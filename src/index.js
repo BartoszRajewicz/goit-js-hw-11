@@ -38,3 +38,10 @@ async function handleFormSubmit(event) {
     console.log(error);
   }
 }
+
+function renderImages(images) {
+  const imageCards = images.map(image => createImageCard(image));
+  gallery.insertAdjacentHTML('beforeend', imageCards.join(''));
+  refreshLighBox();
+  currentPage += 1;
+}
