@@ -13,20 +13,21 @@ searchForm.addEventListener('submit', handleFormSubmit);
 loadMoreButton.addEventListener('click', loadMoreImages);
 
 function scrollNewImages() {
-    const { height: cardHeight } = document.querySelector('.gallery').firstElementChild.getBoundingClientRect();
-    window.scrollBy({
-        top: cardHeight * 2,
-        behavior: 'smooth',
-    });
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
 
-
-
-
-
-
-
-
+window.addEventListener('scroll', () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    loadMoreImages();
+  }
+});
 
 async function handleFormSubmit(event) {
   event.preventDefault();
