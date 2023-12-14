@@ -1,5 +1,6 @@
 import { fetchImages } from './pixabay-api';
 import Notiflix from 'notiflix';
+import simpleLightbox from 'simplelightbox';
 
 const searchForm = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
@@ -88,4 +89,7 @@ async function loadMoreImages() {
   }
 }
 
-
+function refreshLighBox() {
+  const lightbox = new simpleLightbox('.gallery a');
+  lightbox.refresh();
+}
