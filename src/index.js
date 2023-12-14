@@ -33,9 +33,9 @@ async function handleFormSubmit(event) {
   event.preventDefault();
 
   const formData = new FormData(event.currentTarget);
-  const seachQuery = formData.get('seachQuery').trim();
+  const searchQuery = formData.get('searchQuery').trim();
 
-  if (seachQuery !== currentQuery) {
+  if (searchQuery !== currentQuery) {
     clearGallery();
     currentPage = 1;
     currentQuery = searchQuery;
@@ -66,19 +66,18 @@ function renderImages(images) {
 }
 
 function createImageCard(image) {
-  return;
-  `<div class= "photo-card">
-            <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" data-source="${image.largeImageURL}" />
-    <div class= "info">
-        <p class="info-item"><b>Likes:</b> $(image.likes)</p>
-        <p class="info-item"><b>Views:</b> $(image.views)</p>
-        <p class="info-item"><b>Comments:</b> $(image.comments)</p>
-        <p class="info-item"><b>Downloads:</b> $(image.downloads)<p>
-        </div>
-        </div>
-    `;
+  return `
+    <div class="photo-card">
+      <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" data-source="${image.largeImageURL}" />
+      <div class="info">
+        <p class="info-item"><b>Likes:</b> ${image.likes}</p>
+        <p class="info-item"><b>Views:</b> ${image.views}</p>
+        <p class="info-item"><b>Comments:</b> ${image.comments}</p>
+        <p class="info-item"><b>Downloads:</b> ${image.downloads}</p>
+      </div>
+    </div>
+  `;
 }
-
 function clearGallery() {
   gallery.innerHTML = '';
 }
