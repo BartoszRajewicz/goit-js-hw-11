@@ -61,6 +61,7 @@ function renderImages(images) {
   const imageCards = images.map(image => createImageCard(image));
   gallery.insertAdjacentHTML('beforeend', imageCards.join(''));
   refreshLighBox();
+  scrollNewImages();
   currentPage += 1;
 }
 
