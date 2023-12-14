@@ -60,4 +60,8 @@ function createImageCard(image) {
     `;
 }
 
+function clearGallery() {
+    gallery.innerHTML = '';
+}
+
 
