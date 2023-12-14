@@ -61,7 +61,13 @@ function createImageCard(image) {
 }
 
 function clearGallery() {
-    gallery.innerHTML = '';
+  gallery.innerHTML = '';
 }
 
+function showLoadMoreButton() {
+  loadMoreButton.style.display = 'block';
+}
 
+function hideLoadMoreButton() {
+  loadMoreButton.style.display = 'none';
+}
