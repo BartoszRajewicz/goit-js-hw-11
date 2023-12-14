@@ -71,3 +71,21 @@ function showLoadMoreButton() {
 function hideLoadMoreButton() {
   loadMoreButton.style.display = 'none';
 }
+
+async function loadMoreImages() {
+  try {
+    const images = await fetchImages(currentQuery, currentPage);
+    if (images.length > 0) {
+      renderImages(images);
+    } else {
+      hideLoadMoreButton();
+      Notiflix.Notify.failure(
+        "We're sorry, but you've reached the end of search results."
+      );
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
