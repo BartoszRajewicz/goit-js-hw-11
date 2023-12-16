@@ -1,6 +1,6 @@
 import { fetchImages } from './pixabay-api';
 import Notiflix from 'notiflix';
-import simpleLightbox from 'simplelightbox';
+import SimpleLightbox from 'simplelightbox';
 
 const searchForm = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');

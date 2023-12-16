@@ -5,7 +5,7 @@ const API_KEY = '41244785-17981172bc37ee7b733939999';
 
 async function fetchImages(query, page = 1) {
   try {
-    const response = await axios.get('https://pixabay.com/api', {
+    const response = await axios.get('https://pixabay.com/api/', {
       params: {
         key: API_KEY,
         q: query,
