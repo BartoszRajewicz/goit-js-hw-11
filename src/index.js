@@ -108,10 +108,6 @@ async function loadMoreImages() {
             "We're sorry, but you've reached the end of search results."
           );
         }
-      } else {
-        Notiflix.Notify.failure(
-          'Sorry, there was an issue with the search. Please try again.'
-        );
       }
     }
   } catch (error) {
