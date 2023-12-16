@@ -1,16 +1,15 @@
 import { fetchImages } from './pixabay-api';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const searchForm = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
-const loadMoreButton = document.querySelector('.load-more');
 
 let currentPage = 1;
 let currentQuery = '';
 
 searchForm.addEventListener('submit', handleFormSubmit);
-loadMoreButton.addEventListener('click', loadMoreImages);
 
 function scrollNewImages() {
   const { height: cardHeight } = document
@@ -45,12 +44,10 @@ async function handleFormSubmit(event) {
 
     if (images.length > 0) {
       renderImages(images);
-      showLoadMoreButton();
     } else {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
-      hideLoadMoreButton();
     }
   } catch (error) {
     console.log(error);
@@ -82,21 +79,12 @@ function clearGallery() {
   gallery.innerHTML = '';
 }
 
-function showLoadMoreButton() {
-  loadMoreButton.style.display = 'block';
-}
-
-function hideLoadMoreButton() {
-  loadMoreButton.style.display = 'none';
-}
-
 async function loadMoreImages() {
   try {
     const images = await fetchImages(currentQuery, currentPage);
     if (images.length > 0) {
       renderImages(images);
     } else {
-      hideLoadMoreButton();
       Notiflix.Notify.failure(
         "We're sorry, but you've reached the end of search results."
       );
@@ -107,6 +95,6 @@ async function loadMoreImages() {
 }
 
 function refreshLighBox() {
-  const lightbox = new simpleLightbox('.gallery a');
+  const lightbox = new SimpleLightbox('.gallery a');
   lightbox.refresh();
 }

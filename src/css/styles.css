@@ -8,13 +8,30 @@ body {
   color: white;
   text-align: center;
   padding: 20px;
+  position: relative;
+}
+
+.search-form input {
+  width: 30%;
+  padding: 10px;
+}
+
+.search-form button {
+  height: 48%;
+  margin-left: 10px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  padding: 20px;
+  padding: 30px;
 }
 
 .photo-card {
@@ -27,16 +44,20 @@ body {
 
 .photo-card img {
   width: 100%;
-  height: auto;
+  height: 80%;
+  object-fit: cover;
   border-radius: 8px 8px 0 0;
 }
 
 .info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   padding: 16px;
   text-align: center;
 }
 
 .info-item {
-  font-size: 14px;
+  font-size: 18px;
   margin: 5px 0;
 }
