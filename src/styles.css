@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.search-form {
+  background-color: rgb(78, 78, 222);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.photo-card {
+  background: white;
+  box-shadow: 0px 2px 1px 0px #00000033, 0px 1px 1px 0px #00000024,
+    0px 1px 3px 0px #0000001f;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+}
+
+.info {
+  padding: 16px;
+  text-align: center;
+}
+
+.info-item {
+  font-size: 14px;
+  margin: 5px 0;
+}
