@@ -96,7 +96,6 @@ async function loadMoreImages() {
     const images = await fetchImages(currentQuery, currentPage);
     if (images && images.length > 0) {
       renderImages(images);
-      observer.observe(document.querySelector('.gallery'));
     } else {
       if (images && images.length === 0) {
         Notiflix.Notify.failure(
