@@ -5,10 +5,21 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const searchForm = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
+const endMessage = document.querySelector('.end');
 
 let currentPage = 1;
 let currentQuery = '';
 let isFirstLoad = true;
+
+const domObserver = new MutationObserver(() => {
+  const endElement = document.querySelector('.end');
+  if (endElement) {
+    observer.observe(endElement);
+    domObserver.disconnect(); // Disconnect the observer once the "end" element is found
+  }
+});
+
+domObserver.observe(document.body, { childList: true, subtree: true });
 
 searchForm.addEventListener('submit', handleFormSubmit);
 
@@ -32,7 +43,7 @@ const observer = new IntersectionObserver(
   },
   { threshold: [0, 0.2] }
 );
-observer.observe(document.querySelector('.gallery'));
+observer.observe(document.querySelector('p.end'));
 
 async function handleFormSubmit(event) {
   event.preventDefault();
