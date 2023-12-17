@@ -96,9 +96,9 @@ function clearGallery() {
 
 async function loadMoreImages() {
   try {
-    const images = await fetchImages(currentQuery, currentPage);
+    const { images, totalHits } = await fetchImages(currentQuery, currentPage);
 
-    if (images && images.length > 0) {
+    if (images.length > 0) {
       renderImages(images);
       currentPage += 1;
     } else {
@@ -106,7 +106,7 @@ async function loadMoreImages() {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
-      } else if (currentPage > 1 && images.length === 0) {
+      } else if (currentPage > 1 && totalHits > 0) {
         Notiflix.Notify.failure(
           "We're sorry, but you've reached the end of search results."
         );
