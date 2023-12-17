@@ -5,21 +5,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const searchForm = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
-const endMessage = document.querySelector('.end');
 
 let currentPage = 1;
 let currentQuery = '';
 let isFirstLoad = true;
-
-const domObserver = new MutationObserver(() => {
-  const endElement = document.querySelector('.end');
-  if (endElement) {
-    observer.observe(endElement);
-    domObserver.disconnect(); // Disconnect the observer once the "end" element is found
-  }
-});
-
-domObserver.observe(document.body, { childList: true, subtree: true });
 
 searchForm.addEventListener('submit', handleFormSubmit);
 
@@ -53,7 +42,7 @@ async function handleFormSubmit(event) {
 
   if (!searchQuery) {
     Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
+      'Sorry, there are no images matching your search query. Please try a different search term.'
     );
     return;
   }
@@ -71,6 +60,9 @@ async function handleFormSubmit(event) {
     } else {
     }
   } catch (error) {
+    Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try a different search term.'
+    );
     console.log(error);
   }
 
@@ -105,19 +97,19 @@ function clearGallery() {
 async function loadMoreImages() {
   try {
     const images = await fetchImages(currentQuery, currentPage);
+
     if (images && images.length > 0) {
       renderImages(images);
+      currentPage += 1;
     } else {
-      if (images && images.length === 0) {
+      if (currentPage === 1) {
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
-      } else if (images && images.totalHits) {
-        if (currentPage === 1 || gallery.children.length < images.totalHits) {
-          Notiflix.Notify.failure(
-            "We're sorry, but you've reached the end of search results."
-          );
-        }
+      } else if (currentPage > 1 && images.length === 0) {
+        Notiflix.Notify.failure(
+          "We're sorry, but you've reached the end of search results."
+        );
       }
     }
   } catch (error) {
